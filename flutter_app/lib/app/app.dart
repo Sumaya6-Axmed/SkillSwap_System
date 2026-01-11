@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'routes.dart';
-import '../config/theme.dart';
+import 'package:skillswap_app/app/routes.dart';
 
 class SkillSwapApp extends StatelessWidget {
   const SkillSwapApp({super.key});
@@ -8,10 +7,8 @@ class SkillSwapApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SkillSwap',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      initialRoute: AppRoutes.login,
+      initialRoute: AppRoutes.splash,
       routes: AppRoutes.routes,
     );
   }

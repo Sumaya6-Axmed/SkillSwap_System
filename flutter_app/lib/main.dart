@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'app/app.dart';
+import 'package:skillswap_app/app/app.dart';
+
 void main() {
   runApp(const SkillSwapApp());
 }
