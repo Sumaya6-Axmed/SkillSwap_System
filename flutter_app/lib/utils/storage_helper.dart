@@ -1,20 +1,37 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 class StorageHelper {
-  static Future<void> saveAuthData(
-      String token, String userId) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
-    await prefs.setString('userId', userId);
+  static final _box = GetStorage();
+
+  static Future<void> saveAuth({
+    required String token,
+    required String userId,
+    String? email,
+  }) async {
+    await _box.write("token", token);
+    await _box.write("userId", userId);
+    if (email != null) await _box.write("email", email);
   }
 
-  static Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('token');
-  }
+  static String? token() => _box.read("token");
+  static String? userId() => _box.read("userId");
+  static String? email() => _box.read("email");
 
   static Future<void> logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+    await _box.remove("token");
+    await _box.remove("userId");
+    await _box.remove("email");
+  }
+
+  // ✅ compatibility with your old code:
+  static String? getToken() => token();
+  static String? getUserId() => userId();
+
+  static Future<void> saveAuthData(
+    String token,
+    String userId, {
+    String? email,
+  }) async {
+    await saveAuth(token: token, userId: userId, email: email);
   }
 }
