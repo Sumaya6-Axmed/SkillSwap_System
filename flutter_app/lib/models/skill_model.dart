@@ -33,8 +33,8 @@ class SkillModel {
   }
 
   Map<String, dynamic> toCreateJson() => {
-        "name": name,
-        "category": category,
-        "description": description ?? "",
-      };
+    "name": name,
+    "category": category,
+    "description": description ?? "",
+  };
 }
